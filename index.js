@@ -5,10 +5,11 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get("/", (req,res) => {
-    res.render("index", {
-        
-    })
+    res.render("index")
 }) 
+app.get("/question", (req,res) => {
+    res.render("question")
+})
 
 app.listen(8080,()=> {
     console.log("Servidor rodando!")
