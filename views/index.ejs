@@ -3,20 +3,22 @@
   <%- include ('partials/navbar.ejs') %>
 
   <div class="container">
-    <hr>
+    <hr />
     <h1>Questions</h1>
-    <hr>
-    <a href="/question" class = 'btn btn-success'>Make a question</a>
-    <br>
+    <hr />
+    <a href="/question" class="btn btn-success">Make a question</a>
+    <br />
     <% questions.forEach(question => { %>
-    <br>
+    <br />
     <div class="card">
       <div class="card-body">
         <h3><%= question.title %></h3>
         <p><%= question.question %></p>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary">answer</button>
+        <a href="/question/<%= question.id %>" class="btn btn-primary"
+          >Answer</a
+        >
       </div>
     </div>
     <% }); %>

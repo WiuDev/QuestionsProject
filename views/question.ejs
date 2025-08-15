@@ -1,38 +1,35 @@
 <%- include ('partials/header.ejs') %>
 <body>
-    <%- include ('partials/navbar.ejs') %>
+  <%- include ('partials/navbar.ejs') %>
   <div class="container">
-    <div class="card" id="formQuestion">
-      <div class="card-header">
-        <h3>Make your question</h3>
+    <hr />
+    <h1><%= question.title %></h1>
+    <p><%= question.question %></p>
+
+    <hr />
+    <form method="post" action="/answer">
+      <h3>Answer</h3>
+      <label>Type your answer below:</label>
+      <textarea
+        name="answer"
+        class="form-control"
+        placeholder="Type your answer here..."
+      ></textarea>
+      <br />
+      <input type="hidden" value="<%= question.id %>" name="questionId" />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr>
+    <h3>Respostas</h3>
+    <hr>
+    <%= answers.length === 0 ? "No answers yet. Be the first to answer!" : "" %>
+    <% answers.forEach(answer => { %>
+      <div class="card mb-2">
+        <div class="card-body">
+          <p><%= answer.answer %></p>
+        </div>
       </div>
-      <div class="card-body">
-        <form method="post" action="/savequestion">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input
-              type="text"
-              placeholder="Title"
-              class="form-control"
-              id="title"
-              name="title"
-              required
-            />
-            <br />
-            <label for="question" class="form-label">Question</label>
-            <input
-              type="text"
-              placeholder="Question"
-              class="form-control"
-              id="question"
-              name="question"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-      </div>
-    </div>
+    <% }); %>
   </div>
 </body>
 <%- include ('partials/footer.ejs') %>
